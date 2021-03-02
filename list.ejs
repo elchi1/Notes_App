@@ -1,0 +1,38 @@
+<!-- Layouts - Макеты очень крутой инструмент, мы можем создать множество html файлов на примере одного,
+    это значит что мы можем создать один html файл, и связвать его с несколькими другими при помощи laoyot конструкции 
+    здесь мы пишем layouts код связываем головную часть
+     в нашем случае с header.ejs  -->
+
+  <%- include("header") -%>
+
+  <div class="box" id="heading">
+    <h1><%= listTitle %> </h1>
+  </div>
+
+
+  <div class="box">
+
+
+      <% for (let i = 0; i<newListItems.length; i++) { %>
+        <div class="item">
+          <input type="checkbox" >
+          <p>  <%=  newListItems[i] %>  </p>
+        </div>
+
+      <% } %>
+
+
+
+      <!-- Внутри метода form в инструкции action указываем наш файл куда должен
+      попасть наш файл, "/" означает главный файл, а метод post поскольку мы будем добавлять новые данные   -->
+      <form class="item" action="/" method="post">
+        <!-- связываемся с name, в нашем случае имя метода name= newItem -->
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off" >
+        <button type="submit" name="list" value=<%= listTitle %>>+</button>
+      </form>
+
+  </div>
+
+
+<!-- Ну а здесь добавляем footer  -->
+  <%- include("footer") -%>
